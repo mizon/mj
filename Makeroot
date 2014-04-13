@@ -1,0 +1,20 @@
+PACKS = core
+
+CLEAN_DIRS = $(SUB_DIRS:%=clean-%)
+
+clean: $(CLEAN_DIRS)
+	rm -f *.{o,a,cmo,cmx,cmxa,cmi,out} .deps
+$(CLEAN_DIRS):
+	$(MAKE) -C $(@:clean-%=%) clean
+
+%.cmx: %.ml
+	ocamlfind opt -thread -c -package '$(PACKS)' $(OPT_FLAGS) $<
+%.cmi: %.mli
+	ocamlfind opt -thread -c -package '$(PACKS)' $<
+
+.PHONY: clean
+.PHONY: $(CLEAN_DIRS)
+
+include .deps
+.deps:
+	ocamldep *.mli *.ml > $@

@@ -1,0 +1,1 @@
+let () = Mj.Cli.run ()
