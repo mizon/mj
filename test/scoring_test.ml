@@ -8,9 +8,11 @@ let get_base_score_test =
   "get_base_score" >::: [
     "2 20" >:: test_base_score 2 20 320;
     "3 30" >:: test_base_score 3 30 960;
+    "3 60" >:: test_base_score 3 60 1920;
     "4 30" >:: test_base_score 4 30 1920;
 
     "Mangan" >::: [
+      "3 70" >:: test_base_score 3 70 2000;
       "4 40" >:: test_base_score 4 40 2000;
       "5 20" >:: test_base_score 5 20 2000;
     ];
