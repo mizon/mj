@@ -40,4 +40,11 @@ let suite =
       let player = get_player field "C" in
       assert_equal "C" player.Player.name
     );
+
+    "is_parent" >:: (fun _ ->
+      assert_bool "A is a parent" (is_parent field "A");
+      assert_bool "B is not a parent" (not (is_parent field "B"));
+      assert_bool "C is not a parent" (not (is_parent field "C"));
+      assert_bool "D is not a parent" (not (is_parent field "D"))
+    );
   ]

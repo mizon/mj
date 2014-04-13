@@ -19,3 +19,4 @@ val create :
 val riichi         : t -> t
 val rotate_players : t -> t
 val get_player     : t -> string -> Player.t
+val is_parent      : t -> string -> bool
