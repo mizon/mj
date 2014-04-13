@@ -3,7 +3,7 @@ PACKS = core
 CLEAN_DIRS = $(SUB_DIRS:%=clean-%)
 
 clean: $(CLEAN_DIRS)
-	rm -f *.{o,a,cmo,cmx,cmxa,cmi,out} .deps
+	rm -f *.{o,a,cmo,cmx,cmxa,cmi,out,log,cache} .deps
 $(CLEAN_DIRS):
 	$(MAKE) -C $(@:clean-%=%) clean
 
