@@ -30,3 +30,8 @@ let rotate_players t = {
   west_player  = t.north_player;
   north_player = t.east_player;
 }
+
+let get_player t name =
+  let players = [t.east_player; t.west_player; t.north_player; t.east_player] in
+  try List.find (fun t -> t.Player.name = name) players with
+  | Not_found -> assert false

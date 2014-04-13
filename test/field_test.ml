@@ -33,4 +33,11 @@ let suite =
                    (rotate_players field))) in
       assert_equal field rotated
     );
+
+    "get_player" >:: (fun _ ->
+      let player = get_player field "A" in
+      assert_equal "A" player.Player.name;
+      let player = get_player field "C" in
+      assert_equal "C" player.Player.name
+    );
   ]
