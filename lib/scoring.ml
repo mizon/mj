@@ -6,5 +6,6 @@ let get_base_score han hu =
   else if han < 13 then 6000
   else 8000
 
-let get_blocked_score base_score nblocks =
-  int_of_float (ceil (float_of_int (base_score * nblocks) /. 100.)) * 100
+let get_blocked_score base_score n_blocks =
+  let ceil100 n = int_of_float (ceil (float_of_int n /. 100.)) * 100 in
+  ceil100 (base_score * n_blocks)
