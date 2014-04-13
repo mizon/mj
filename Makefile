@@ -1,8 +1,12 @@
-SUB_DIRS = lib test
+SUB_DIRS	= lib test
+MJ_LIB		= lib/mj.cmx
 
-mj.out: lib/mj.cmx main.ml
+main.out:
+
+%.out: $(MJ_LIB) %.ml
 	ocamlfind opt -thread -linkpkg -I lib -o $@ -package $(PACKS) $+
-lib/mj.cmx:
+
+$(MJ_LIB):
 	make -C lib mj.cmx
 
 all: test mj.out
