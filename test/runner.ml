@@ -2,7 +2,9 @@ open OUnit2
 
 let mj_test_suite =
   "Mj" >::: [
-    Scoring_test.suite
+    Player_test.suite;
+    Field_test.suite;
+    Scoring_test.suite;
   ]
 
 let () =

@@ -1,13 +1,12 @@
 OPT_FLAGS	= -thread -I ../lib
 EXECUTABLE	= run_test.out
 MJ_LIB 		= mj.cmx
+TESTS		= scoring_test.cmx field_test.cmx player_test.cmx
 
-PACKS += ounit
-
-test: $(EXECUTABLE)
+test: runner.out
 	./$<
 
-$(EXECUTABLE): $(MJ_LIB) scoring_test.cmx runner.cmx
+%.out: $(MJ_LIB) $(TESTS) %.cmx
 	ocamlfind opt -I ../lib -thread -linkpkg -package $(PACKS) -o $@ $+
 
 $(MJ_LIB):

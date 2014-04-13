@@ -17,4 +17,4 @@ $(CLEAN_DIRS):
 
 include .deps
 .deps:
-	ocamldep *.mli *.ml > $@
+	ocamldep -native *.mli *.ml > $@
