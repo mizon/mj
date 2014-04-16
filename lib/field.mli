@@ -16,7 +16,10 @@ val create :
   north_name:string ->
   t
 
-val riichi         : t -> t
-val rotate_players : t -> t
-val get_player     : t -> string -> Player.t
-val is_parent      : t -> string -> bool
+val riichi             : t -> t
+val rotate_players     : t -> t
+val get_players        : t -> Player.t list
+val get_player         : t -> string -> Player.t
+val is_parent          : t -> string -> bool
+val iter_players       : t -> (Player.t -> unit) -> unit
+val modify_each_player : (Player.t -> Player.t) -> t -> t

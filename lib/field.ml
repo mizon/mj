@@ -31,10 +31,28 @@ let rotate_players t = {
   north_player = t.east_player;
 }
 
+let get_players t = [
+  t.east_player;
+  t.south_player;
+  t.west_player;
+  t.north_player;
+]
+
 let get_player t name =
-  let players = [t.east_player; t.west_player; t.north_player; t.east_player] in
+  let players = get_players t in
   try List.find (fun t -> t.Player.name = name) players with
   | Not_found -> assert false
 
 let is_parent t name =
   name = t.east_player.Player.name
+
+let iter_players t f =
+  List.iter f (get_players t)
+
+let modify_each_player f t = {
+  t with
+  east_player  = f (t.east_player);
+  south_player = f (t.south_player);
+  west_player  = f (t.west_player);
+  north_player = f (t.north_player);
+}

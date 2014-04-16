@@ -47,4 +47,25 @@ let suite =
       assert_bool "C is not a parent" (not (is_parent field "C"));
       assert_bool "D is not a parent" (not (is_parent field "D"))
     );
+
+    "iter_players" >:: (fun _ ->
+      let player_names = ref [] in
+      iter_players field (fun player ->
+        player_names := player.Player.name :: !player_names
+      );
+      assert_equal ["D"; "C"; "B"; "A"] !player_names
+    );
+
+    "modify_each_player" >:: (fun _ ->
+      let expected_players =
+        List.map (fun p -> {p with Player.score = 25500}) (get_players field)
+      in
+      let modified_players =
+        let modified_field =
+          modify_each_player (Player.modify_score 500) field
+        in
+        get_players modified_field
+      in
+      assert_equal expected_players modified_players
+    );
   ]
