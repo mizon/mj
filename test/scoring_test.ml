@@ -40,11 +40,11 @@ let get_base_score_test =
 
 let get_blocked_score_test =
   let test_blocked_score_suite han
-                               hu
-                               ~tumo_parent_to_child
-                               ~tumo_child_to_child
-                               ~ron_to_parent
-                               ~ron_to_child =
+      hu
+      ~tumo_parent_to_child
+      ~tumo_child_to_child
+      ~ron_to_parent
+      ~ron_to_child =
     let test_blocked_score han hu n_blocks expect _ =
       let base_score = Mj.Scoring.get_base_score han hu in
       let blocked_score = Mj.Scoring.get_blocked_score base_score n_blocks in
@@ -58,34 +58,34 @@ let get_blocked_score_test =
   in
   "get_blocked_score" >::: [
     "1 30" >:::
-      test_blocked_score_suite
-        1 30
-        ~tumo_parent_to_child:500  ~tumo_child_to_child:300
-        ~ron_to_parent:1500 ~ron_to_child:1000;
+    test_blocked_score_suite
+      1 30
+      ~tumo_parent_to_child:500  ~tumo_child_to_child:300
+      ~ron_to_parent:1500 ~ron_to_child:1000;
 
     "1 70" >:::
-      test_blocked_score_suite
-        1 70
-        ~tumo_parent_to_child:1200 ~tumo_child_to_child:600
-        ~ron_to_parent:3400 ~ron_to_child:2300;
+    test_blocked_score_suite
+      1 70
+      ~tumo_parent_to_child:1200 ~tumo_child_to_child:600
+      ~ron_to_parent:3400 ~ron_to_child:2300;
 
     "2 20" >:::
-      test_blocked_score_suite
-        2 20
-        ~tumo_parent_to_child:700 ~tumo_child_to_child:400
-        ~ron_to_parent:2000 ~ron_to_child:1300;
+    test_blocked_score_suite
+      2 20
+      ~tumo_parent_to_child:700 ~tumo_child_to_child:400
+      ~ron_to_parent:2000 ~ron_to_child:1300;
 
     "4 30" >:::
-      test_blocked_score_suite
-        4 30
-        ~tumo_parent_to_child:3900 ~tumo_child_to_child:2000
-        ~ron_to_parent:11600 ~ron_to_child:7700;
+    test_blocked_score_suite
+      4 30
+      ~tumo_parent_to_child:3900 ~tumo_child_to_child:2000
+      ~ron_to_parent:11600 ~ron_to_child:7700;
 
     "Baiman" >:::
-      test_blocked_score_suite
-        8 30
-        ~tumo_parent_to_child:8000 ~tumo_child_to_child:4000
-        ~ron_to_parent:24000 ~ron_to_child:16000;
+    test_blocked_score_suite
+      8 30
+      ~tumo_parent_to_child:8000 ~tumo_child_to_child:4000
+      ~ron_to_parent:24000 ~ron_to_child:16000;
   ]
 
 let suite =
