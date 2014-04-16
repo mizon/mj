@@ -9,3 +9,7 @@ let create name_ score_ = {
   score       = score_;
   is_riichied = false;
 }
+
+let modify_score delta t = {
+  t with score = t.score + delta;
+}

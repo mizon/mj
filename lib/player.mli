@@ -4,4 +4,5 @@ type t = {
   is_riichied : bool;
 }
 
-val create : string -> int -> t
+val create       : string -> int -> t
+val modify_score : int -> t -> t
