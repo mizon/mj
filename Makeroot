@@ -8,9 +8,9 @@ $(CLEAN_DIRS):
 	$(MAKE) -C $(@:clean-%=%) clean
 
 %.cmx: %.ml
-	ocamlfind opt -thread -c -package '$(PACKS)' $(OPT_FLAGS) $<
+	ocamlfind opt -annot -thread -c -package '$(PACKS)' $(OPT_FLAGS) $<
 %.cmi: %.mli
-	ocamlfind opt -thread -c -package '$(PACKS)' $<
+	ocamlfind opt -annot -thread -c -package '$(PACKS)' $<
 
 .PHONY: clean
 .PHONY: $(CLEAN_DIRS)

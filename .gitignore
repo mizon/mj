@@ -7,4 +7,5 @@
 *.out
 *.log
 *.cache
+*.annot
 .deps
