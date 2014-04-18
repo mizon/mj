@@ -1,6 +1,6 @@
-let get_base_score han hu =
+let get_base_score han fu =
   if han < 6  then
-    let candidate = hu * Utils.pow 2 (han + 2) in
+    let candidate = fu * Utils.pow 2 (han + 2) in
     min candidate 2000
   else if han < 8  then 3000
   else if han < 11 then 4000
