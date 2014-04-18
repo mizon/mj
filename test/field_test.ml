@@ -1,3 +1,4 @@
+open Core
 open OUnit2
 open Mj
 open Mj.Field
@@ -58,7 +59,7 @@ let suite =
 
     "modify_each_player" >:: (fun _ ->
         let expected_players =
-          List.map (fun p -> {p with Player.score = 25500}) (get_players field)
+          Core_list.map (get_players field) (fun p -> {p with Player.score = 25500})
         in
         let modified_players =
           let modified_field =

@@ -1,3 +1,4 @@
+open Core
 open OUnit2
 open Mj
 open Mj.Field
@@ -10,7 +11,7 @@ let field =
                ~north_name:"D"
 
 let list_players field =
-  List.map (get_player field) ["A"; "B"; "C"; "D"]
+  Core_list.map ["A"; "B"; "C"; "D"] (get_player field)
 
 let suite =
   "Action" >::: [
@@ -28,7 +29,7 @@ let suite =
       "parent 1 30" >:: (fun _ ->
           let modified_field = Action.ron "A" "B" 1 30 field in
           let modified_scores =
-            List.map (fun p -> p.Player.score) (list_players modified_field)
+            Core_list.map (list_players modified_field) (fun p -> p.Player.score)
           in
           assert_equal [26500; 23500; 25000; 25000] modified_scores
         );
@@ -36,7 +37,7 @@ let suite =
       "child 1 30" >:: (fun _ ->
           let modified_field = Action.ron "B" "A" 1 30 field in
           let modified_scores =
-            List.map (fun p -> p.Player.score) (list_players modified_field)
+            Core_list.map (list_players modified_field) (fun p -> p.Player.score)
           in
           assert_equal [24000; 26000; 25000; 25000] modified_scores
         );
@@ -45,7 +46,7 @@ let suite =
     "riichi" >:: (fun _ ->
         let modified_field = Action.riichi "B" field in
         let modified_scores =
-          List.map (fun p -> p.Player.score) (list_players modified_field)
+          Core_list.map (list_players modified_field) (fun p -> p.Player.score)
         in
         assert_equal [25000; 24000; 25000; 25000] modified_scores;
         assert_equal 1                            modified_field.n_riichi

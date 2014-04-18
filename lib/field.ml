@@ -1,3 +1,5 @@
+open Core
+
 type t = {
   wind         : Wind.t;
   game         : int;
@@ -40,14 +42,15 @@ let get_players t = [
 
 let get_player t name =
   let players = get_players t in
-  try List.find (fun t -> t.Player.name = name) players with
-  | Not_found -> assert false
+  match Core_list.find players (fun t -> t.Player.name = name) with
+  | Some player -> player
+  | None        -> assert false
 
 let is_parent t name =
   name = t.east_player.Player.name
 
 let iter_players t f =
-  List.iter f (get_players t)
+  Core_list.iter (get_players t) f
 
 let modify_each_player f t = {
   t with
