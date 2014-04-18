@@ -1,6 +1,6 @@
 type t = {
   wind         : Wind.t;
-  game         : int;
+  kyoku        : int;
   honba        : int;
   n_riichi     : int;
   east_player  : Player.t;

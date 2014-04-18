@@ -2,7 +2,7 @@ open Core
 
 type t = {
   wind         : Wind.t;
-  game         : int;
+  kyoku        : int;
   honba        : int;
   n_riichi     : int;
   east_player  : Player.t;
@@ -13,7 +13,7 @@ type t = {
 
 let create ~init_score ~east_name ~south_name ~west_name ~north_name = {
   wind         = Wind.East;
-  game         = 1;
+  kyoku        = 1;
   honba        = 0;
   n_riichi     = 0;
   east_player  = Player.create east_name init_score;
