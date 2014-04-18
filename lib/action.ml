@@ -54,8 +54,15 @@ let ron payee_name payer_name han fu field =
   field
 
 let riichi player_name field =
-  let player = Field.get_player field player_name in
-  field
+  let field =
+    Field.modify_each_player (fun player ->
+        if player.Player.name = player_name then
+          Player.riichi player
+        else
+          player
+      ) field
+  in
+  Field.riichi field
 
 let draw_game tenpai_player_names field =
   let tenpai_players = List.map (Field.get_player field) tenpai_player_names in

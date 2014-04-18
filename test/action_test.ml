@@ -41,4 +41,13 @@ let suite =
           assert_equal [24000; 26000; 25000; 25000] modified_scores
         );
     ];
+
+    "riichi" >:: (fun _ ->
+        let modified_field = Action.riichi "B" field in
+        let modified_scores =
+          List.map (fun p -> p.Player.score) (list_players modified_field)
+        in
+        assert_equal [25000; 24000; 25000; 25000] modified_scores;
+        assert_equal 1                            modified_field.n_riichi
+      );
   ]
