@@ -59,3 +59,12 @@ let modify_each_player t f = {
   west_player  = f (t.west_player);
   north_player = f (t.north_player);
 }
+
+let modify_player t name f =
+  let f player =
+    if player.Player.name = name then
+      f player
+    else
+      player
+  in
+  modify_each_player t f

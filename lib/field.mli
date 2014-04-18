@@ -23,3 +23,4 @@ val get_player         : t -> string -> Player.t
 val is_parent          : t -> string -> bool
 val iter_players       : t -> (Player.t -> unit) -> unit
 val modify_each_player : t -> (Player.t -> Player.t) -> t
+val modify_player      : t -> string -> (Player.t -> Player.t) -> t

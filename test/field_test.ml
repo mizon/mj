@@ -69,4 +69,12 @@ let suite =
         in
         assert_equal expected_players modified_players
       );
+
+    "modify_player" >:: (fun _ ->
+        let modified_field = modify_player field "B" (Player.modify_score 300) in
+        let player_scores =
+          Core_list.map (get_players modified_field) (fun p -> p.Player.score)
+        in
+        assert_equal [25000; 25300; 25000; 25000] player_scores
+      );
   ]
