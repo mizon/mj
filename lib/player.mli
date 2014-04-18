@@ -6,3 +6,4 @@ type t = {
 
 val create       : string -> int -> t
 val modify_score : int -> t -> t
+val riichi       : t -> t

@@ -16,5 +16,12 @@ let suite =
         let player   = Player.create "tester" 25000 in
         let modified = Player.create "tester" 27000 in
         assert_equal modified (Player.modify_score 2000 player)
-      )
+      );
+
+    "riichi" >:: (fun _ ->
+        let player   = Player.create "tester" 25000 in
+        let modified = Player.riichi player in
+        assert_equal 24000 modified.Player.score;
+        assert_bool "must be riiched" modified.Player.is_riichied
+      );
   ]
