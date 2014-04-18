@@ -5,7 +5,8 @@ SUB_LIBS	=	\
 	cli.cmx		\
 	wind.cmx	\
 	player.cmx	\
-	field.cmx
+	field.cmx	\
+	action.cmx
 
 mj.cmx: $(SUB_LIBS)
 	ocamlfind opt -pack -o $@ $+

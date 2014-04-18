@@ -1,7 +1,11 @@
 OPT_FLAGS	= -thread -I ../lib
-EXECUTABLE	= run_test.out
 MJ_LIB 		= mj.cmx
-TESTS		= scoring_test.cmx field_test.cmx player_test.cmx
+
+TESTS =				\
+	scoring_test.cmx	\
+	field_test.cmx		\
+        player_test.cmx		\
+	action_test.cmx
 
 test: runner.out
 	./$<

@@ -5,6 +5,7 @@ let mj_test_suite =
     Player_test.suite;
     Field_test.suite;
     Scoring_test.suite;
+    Action_test.suite;
   ]
 
 let () =
