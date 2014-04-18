@@ -43,9 +43,9 @@ let ron payee_name payer_name han fu field =
       Scoring.get_blocked_score (Scoring.get_base_score han fu) n_blocks
     in
     Field.modify_each_player (fun player ->
-        if player.name = payee_name then
+        if player.Player.name = payee_name then
           Player.modify_score delta player
-        else if player.name = payer_name then
+        else if player.Player.name = payer_name then
           Player.modify_score (-delta) player
         else
           player
