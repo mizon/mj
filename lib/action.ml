@@ -67,19 +67,17 @@ let riichi player_name field =
   Field.riichi field
 
 let draw_game tenpai_player_names field =
-  let payer_delta =
-    let n_players = Core_list.length tenpai_player_names in
-    if      n_players = 3 then 3000
-    else if n_players = 2 then 1500
-    else if n_players = 1 then 1000
+  let n_players = Core_list.length tenpai_player_names in
+  let payee_delta, payer_delta =
+    if      n_players = 3 then 1000, -3000
+    else if n_players = 2 then 1500, -1500
+    else if n_players = 1 then 3000, -1000
     else assert false
   in
-  let is_payer player =
-    Option.is_none (Core_list.find tenpai_player_names ((=) player.Player.name))
+  let is_payee player =
+    Option.is_some (Core_list.find tenpai_player_names ((=) player.Player.name))
   in
   Field.modify_each_player (fun player ->
-      if is_payer player then
-        Player.modify_score (-payer_delta) player
-      else
-        Player.modify_score 3000 player
+      let delta = if is_payee player then payee_delta else payer_delta in
+      Player.modify_score delta player
     ) field

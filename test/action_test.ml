@@ -51,4 +51,30 @@ let suite =
         assert_equal [25000; 24000; 25000; 25000] modified_scores;
         assert_equal 1                            modified_field.n_riichi
       );
+
+    "draw_game" >::: [
+      "when triple players tenpai" >:: (fun _ ->
+          let modified_field = Action.draw_game ["A"; "B"; "C"] field in
+          let modified_scores =
+            Core_list.map (list_players modified_field) (fun p -> p.Player.score)
+          in
+          assert_equal [26000; 26000; 26000; 22000] modified_scores
+        );
+
+      "when double players tenpai" >:: (fun _ ->
+          let modified_field = Action.draw_game ["B"; "C"] field in
+          let modified_scores =
+            Core_list.map (list_players modified_field) (fun p -> p.Player.score)
+          in
+          assert_equal [23500; 26500; 26500; 23500] modified_scores
+        );
+
+      "when single player tenpais" >:: (fun _ ->
+          let modified_field = Action.draw_game ["D"] field in
+          let modified_scores =
+            Core_list.map (list_players modified_field) (fun p -> p.Player.score)
+          in
+          assert_equal [24000; 24000; 24000; 28000] modified_scores
+        );
+    ];
   ]
