@@ -63,7 +63,7 @@ let suite =
         in
         let modified_players =
           let modified_field =
-            modify_each_player (Player.modify_score 500) field
+            modify_each_player field (Player.modify_score 500)
           in
           get_players modified_field
         in

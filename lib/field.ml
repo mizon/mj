@@ -52,7 +52,7 @@ let is_parent t name =
 let iter_players t f =
   Core_list.iter (get_players t) f
 
-let modify_each_player f t = {
+let modify_each_player t f = {
   t with
   east_player  = f (t.east_player);
   south_player = f (t.south_player);
