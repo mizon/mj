@@ -67,6 +67,5 @@ let modify_player t name f =
     if player.Player.name = name then
       f player
     else
-      player
-  in
+      player in
   modify_each_player t f
