@@ -1,5 +1,3 @@
-open Core
-
 type t = Field.t -> Field.t
 
 let get_blocked_score han fu n_blocks field =
@@ -60,14 +58,14 @@ let riichi player_name field =
   Field.riichi field
 
 let draw_game tenpai_player_names field =
-  let n_players = Core_list.length tenpai_player_names in
+  let n_players = List.length tenpai_player_names in
   let payee_delta, payer_delta =
     if      n_players = 3 then 1000, -3000
     else if n_players = 2 then 1500, -1500
     else if n_players = 1 then 3000, -1000
     else assert false in
   let is_payee player =
-    Option.is_some (Core_list.find tenpai_player_names ((=) player.Player.name)) in
+    List.exists ((=) player.Player.name) tenpai_player_names in
   Field.modify_each_player field (fun player ->
       let delta = if is_payee player then payee_delta else payer_delta in
       Player.modify_score delta player

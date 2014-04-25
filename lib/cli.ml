@@ -1,5 +1,3 @@
-open Core
-
 let version = "0.1"
 
 let run () =

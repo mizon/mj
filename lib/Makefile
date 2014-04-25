@@ -7,6 +7,7 @@ SUB_LIBS	=	\
 	player.cmx	\
 	field.cmx	\
 	action.cmx
+PACKS = batteries
 
 mj.cmx: $(SUB_LIBS)
 	ocamlfind opt -pack -o $@ $+

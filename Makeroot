@@ -1,5 +1,3 @@
-PACKS = core
-
 CLEAN_DIRS = $(SUB_DIRS:%=clean-%)
 
 clean: $(CLEAN_DIRS)
@@ -8,9 +6,9 @@ $(CLEAN_DIRS):
 	$(MAKE) -C $(@:clean-%=%) clean
 
 %.cmx: %.ml
-	ocamlfind opt -annot -thread -c -package '$(PACKS)' $(OPT_FLAGS) $<
+	ocamlfind opt -annot -c -package '$(PACKS)' $(OPT_FLAGS) $<
 %.cmi: %.mli
-	ocamlfind opt -annot -thread -c -package '$(PACKS)' $<
+	ocamlfind opt -annot -c -package '$(PACKS)' $<
 
 .PHONY: clean
 .PHONY: $(CLEAN_DIRS)

@@ -1,4 +1,3 @@
-open Core
 open OUnit2
 open Mj
 open Mj.Field
@@ -59,7 +58,7 @@ let suite =
 
     "modify_each_player" >:: (fun _ ->
         let expected_players =
-          Core_list.map (get_players field) (fun p -> {p with Player.score = 25500}) in
+          List.map (fun p -> {p with Player.score = 25500}) (get_players field) in
         let modified_players =
           let modified_field =
             modify_each_player field (Player.modify_score 500) in
@@ -70,7 +69,7 @@ let suite =
     "modify_player" >:: (fun _ ->
         let modified_field = modify_player field "B" (Player.modify_score 300) in
         let player_scores =
-          Core_list.map (get_players modified_field) (fun p -> p.Player.score) in
+          List.map (fun p -> p.Player.score) (get_players modified_field) in
         assert_equal [25000; 25300; 25000; 25000] player_scores
       );
   ]

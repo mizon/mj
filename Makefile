@@ -1,10 +1,11 @@
 SUB_DIRS	= lib test
 MJ_LIB		= mj.cmx
+PACKS		= batteries
 
 main.out:
 
 %.out: $(MJ_LIB) %.ml
-	ocamlfind opt -thread -linkpkg -I lib -o $@ -package $(PACKS) $+
+	ocamlfind opt -thread -linkpkg -I lib -o $@ -package '$(PACKS)' $+
 
 $(MJ_LIB):
 	make -C lib $@

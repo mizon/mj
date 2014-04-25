@@ -1,5 +1,3 @@
-open Core
-
 type t = {
   wind         : Wind.t;
   kyoku        : int;
@@ -44,15 +42,15 @@ let get_players t = [
 
 let get_player t name =
   let players = get_players t in
-  match Core_list.find players (fun t -> t.Player.name = name) with
-  | Some player -> player
-  | None        -> assert false
+  match List.find_all (fun t -> t.Player.name = name) players with
+  | [player] -> player
+  | _        -> assert false
 
 let is_parent t name =
   name = t.east_player.Player.name
 
 let iter_players t f =
-  Core_list.iter (get_players t) f
+  List.iter f (get_players t)
 
 let modify_each_player t f = {
   t with
