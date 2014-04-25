@@ -28,16 +28,14 @@ let suite =
       "parent 1 30" >:: (fun _ ->
           let modified_field = Action.ron "A" "B" 1 30 field in
           let modified_scores =
-            List.map (fun p -> p.Player.score) (list_players modified_field)
-          in
+            List.map (fun p -> p.Player.score) (list_players modified_field) in
           assert_equal [26500; 23500; 25000; 25000] modified_scores
         );
 
       "child 1 30" >:: (fun _ ->
           let modified_field = Action.ron "B" "A" 1 30 field in
           let modified_scores =
-            List.map (fun p -> p.Player.score) (list_players modified_field)
-          in
+            List.map (fun p -> p.Player.score) (list_players modified_field) in
           assert_equal [24000; 26000; 25000; 25000] modified_scores
         );
     ];
@@ -45,8 +43,7 @@ let suite =
     "riichi" >:: (fun _ ->
         let modified_field = Action.riichi "B" field in
         let modified_scores =
-          List.map (fun p -> p.Player.score) (list_players modified_field)
-        in
+          List.map (fun p -> p.Player.score) (list_players modified_field) in
         assert_equal [25000; 24000; 25000; 25000] modified_scores;
         assert_equal 1                            modified_field.n_riichi
       );

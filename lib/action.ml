@@ -9,16 +9,14 @@ let is_parent field player =
 let tumo payee_name han fu field =
   let field =
     let get_score =
-      Scoring.get_blocked_score (Scoring.get_base_score han fu)
-    in
+      Scoring.get_blocked_score (Scoring.get_base_score han fu) in
     if Field.is_parent field payee_name then
       Field.modify_each_player (fun player ->
           let delta =
             if is_parent field player then
               3 * get_score 2
             else
-              -get_score 2
-          in
+              -get_score 2 in
           Player.modify_score delta player
         ) field
     else
@@ -29,19 +27,16 @@ let tumo payee_name han fu field =
             else if is_parent field player then
               -get_score 2
             else
-              -get_score 1
-          in
+              -get_score 1 in
           Player.modify_score delta player
-        ) field
-  in
+        ) field in
   Field.rotate_players field
 
 let ron payee_name payer_name han fu field =
   let field =
     let delta =
       let n_blocks = if Field.is_parent field payee_name then 6 else 4 in
-      Scoring.get_blocked_score (Scoring.get_base_score han fu) n_blocks
-    in
+      Scoring.get_blocked_score (Scoring.get_base_score han fu) n_blocks in
     Field.modify_each_player (fun player ->
         if player.Player.name = payee_name then
           Player.modify_score delta player
@@ -49,8 +44,7 @@ let ron payee_name payer_name han fu field =
           Player.modify_score (-delta) player
         else
           player
-      ) field
-  in
+      ) field in
   field
 
 let riichi player_name field =
@@ -60,8 +54,7 @@ let riichi player_name field =
           Player.riichi player
         else
           player
-      ) field
-  in
+      ) field in
   Field.riichi field
 
 let draw_game tenpai_player_names field =
